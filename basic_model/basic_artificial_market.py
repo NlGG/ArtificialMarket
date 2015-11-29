@@ -46,14 +46,14 @@ class ArtificialMarket():
         r_t_e = np.zeros(num_player)
         
         if len(past_data) < ganma:
-            r_t_h = np.log(P_t_1/np.random.choice(past_data))
+            r_t_h = np.log10(P_t_1/np.random.choice(past_data))
         else:
             past_data_ganma = past_data[-ganma:]
-            r_t_h = np.log(P_t_1/np.random.choice(past_data))
+            r_t_h = np.log10(P_t_1/np.random.choice(past_data))
             
         for i in range(num_player):
             e_t = np.random.normal(0, sigma)
-            r_t_e[i] = (w_1[i]*np.log(P_f/P_t_1) + w_2[i]*r_t_h + w_3[i]*e_t)/(w_1[i] + w_2[i] + w_3[i])
+            r_t_e[i] = (w_1[i]*np.log10(P_f/P_t_1) + w_2[i]*r_t_h + w_3[i]*e_t)/(w_1[i] + w_2[i] + w_3[i])
             P_e = P_t_1*math.exp(r_t_e[i])
             P_o = np.random.normal(P_e, P_sigma)
             if P_e > P_o:
@@ -107,10 +107,10 @@ class ArtificialMarket():
         r_t_e = np.zeros(num_player)
         
         if len(past_data) < ganma:
-            r_t_h = np.log(P_t_1/np.random.choice(past_data))
+            r_t_h = np.log10(P_t_1/np.random.choice(past_data))
         else:
             past_data_ganma = past_data[-ganma:]
-            r_t_h = np.log(P_t_1/np.random.choice(past_data))
+            r_t_h = np.log10(P_t_1/np.random.choice(past_data))
             
         for i in range(num_player):
             for limit in [b_limit1, b_limit2]:
@@ -127,7 +127,7 @@ class ArtificialMarket():
                 W_A = T_A/(T_A+T_B)
             W_B = 1.0 - W_A
             e_t = np.random.normal(0, sigma)
-            r_t_e[i] = (w_1[i]*np.log(P_f/P_t_1) + w_2[i]*r_t_h + w_3[i]*e_t)/(w_1[i] + w_2[i] + w_3[i])
+            r_t_e[i] = (w_1[i]*np.log10(P_f/P_t_1) + w_2[i]*r_t_h + w_3[i]*e_t)/(w_1[i] + w_2[i] + w_3[i])
             P_e = P_t_1*math.exp(r_t_e[i])
             P_o = np.random.normal(P_e, P_sigma)
             if P_e > P_o:
